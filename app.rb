@@ -17,7 +17,7 @@ get '/' do
   erb :start
 end
 
-get %r{^/([\w]+)$} do |s|
+get '/:start' do |s|
   start = stations.key(s)
   if start
     @stations = stations
@@ -27,22 +27,31 @@ get %r{^/([\w]+)$} do |s|
   end
 end
 
-get %r{^/([\w]+)/([\w]+)$} do |s,e|
-  data = { duration: get_duration(s,e) }
+get '/html/:start/:end' do |s,e|
+  return get_duration('html',s,e)
+end
+
+get '/:start/:end' do |s,e|
+  data = { duration: get_duration('json',s,e) }
   json data
 end
 
 helpers do
 
-  def get_duration(s, e)
+  def get_duration(type, s, e)
     base_url = "http://210.132.101.180/service/tobu/web/"
     url = base_url + "main02.jsp?scd=" + s.to_s + "&s=" + s.to_s + "&e=" + e.to_s + "&k=&k2=&k3="
     html = open(url, "r:Shift_JIS").read
     html.encode!("utf-8")
-    if html =~ /約\d分/
-      return $&[1..-2]
-    else
-      return nil
+    case type
+    when 'html'
+      return html
+    when 'json'
+      if html =~ /約\d分/
+        return $&[1..-2]
+      else
+        return nil
+      end
     end
   end
 
