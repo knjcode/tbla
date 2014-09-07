@@ -1,0 +1,9 @@
+<html><body>
+<p><h1>東武バス位置情報API</h1></p>
+<p>出発停留所選択</p>
+<ul>
+<% @stations.each do |key,value| %>
+  <li><a href="<%= value.to_s %>"><%= key %></a></li>
+<% end %>
+</ul>
+</body></html>

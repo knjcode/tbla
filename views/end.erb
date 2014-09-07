@@ -1,0 +1,13 @@
+<html><body>
+<p><h1>東武バス位置情報API</h1></p>
+<p>出発停留所名</p>
+<h2><%= @start %></h2>
+<p>到着停留所選択</p>
+<ul>
+<% @stations.each do |key,value| %>
+  <% if value != @start_id %>
+  <li><a href="<%= @start_id + "/" + value %>"><%= key %></a></li>
+  <% end %>
+<% end %>
+</ul>
+</body></html>
