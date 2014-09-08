@@ -31,6 +31,11 @@ get '/html/:start/:end' do |s,e|
   return get_duration('html',s,e)
 end
 
+get '/src/:start/:end' do |s,e|
+  content_type 'text/plain'
+  get_duration('html',s,e)
+end
+
 get '/:start/:end' do |s,e|
   data = { duration: get_duration('json',s,e) }
   json data
