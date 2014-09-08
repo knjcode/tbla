@@ -37,7 +37,12 @@ get '/src/:start/:end' do |s,e|
 end
 
 get '/:start/:end' do |s,e|
-  data = { duration: get_duration('json',s,e) }
+  d = get_duration('json',s,e)
+  data = {
+    departure: s,
+    stop: e,
+    duration: d
+  }
   json data
 end
 
@@ -52,6 +57,13 @@ helpers do
     when 'html'
       return html
     when 'json'
+      if html =~ /現在位置情報を提供できませんでした。/
+        halt 400, '400 Bad Request'
+      end
+      if html =~ /該当する路線はありません。/
+        halt 404, '404 Not Found'
+      end
+      
       if html =~ /約\d分/
         return $&[1..-2]
       else
