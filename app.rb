@@ -69,8 +69,8 @@ helpers do
         halt 404, '404 Not Found'
       end
       
-      if html =~ /約\d分/
-        return $&[1..-2]
+      if html =~ /約([0-9]+)分/
+        return $1
       else
         return nil
       end
