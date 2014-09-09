@@ -1,5 +1,6 @@
 # coding: utf-8
 require 'sinatra'
+require 'sinatra/cross_origin'
 require 'sinatra/reloader'
 require 'sinatra/json'
 require 'open-uri'
@@ -44,6 +45,10 @@ get '/:start/:end' do |s,e|
     duration: d
   }
   json data
+end
+
+configure do
+  enable :cross_origin
 end
 
 helpers do
