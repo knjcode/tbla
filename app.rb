@@ -1,6 +1,6 @@
 require 'sinatra'
-require 'sinatra/cross_origin'
 require 'sinatra/reloader'
+require 'sinatra/cross_origin'
 require 'sinatra/json'
 require 'open-uri'
 
