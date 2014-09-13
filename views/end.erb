@@ -6,7 +6,7 @@
 <ul>
 <% @stations.each do |key,value| %>
   <% if value != @start_id %>
-  <li><a href="<%= @start_id + "/" + value %>"><%= key %></a></li>
+  <li><h2><a href="<%= @start_id + "/" + value %>"><%= key %></a></h2></li>
   <% end %>
 <% end %>
 </ul>
