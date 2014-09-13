@@ -28,7 +28,7 @@ get '/:start' do |s|
 end
 
 get '/html/:start/:end' do |s,e|
-  return get_duration('html',s,e)
+  get_duration('html',s,e)
 end
 
 get '/src/:start/:end' do |s,e|
@@ -52,11 +52,18 @@ end
 
 helpers do
 
-  def get_duration(type, s, e)
+  def get_html(s, e)
     base_url = "http://210.132.101.180/service/tobu/web/"
-    url = base_url + "main02.jsp?scd=" + s.to_s + "&s=" + s.to_s + "&e=" + e.to_s + "&k=&k2=&k3="
+    url = base_url + "main02.jsp?scd=" + s.to_s + \
+	  "&s=" + s.to_s + "&e=" + e.to_s + "&k=&k2=&k3="
     html = open(url, "r:Shift_JIS").read
     html.encode!("utf-8")
+    return html
+  end
+
+  def get_duration(type, s, e)
+    html = get_html(s,e)
+
     case type
     when 'html'
       return html
