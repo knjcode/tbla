@@ -77,7 +77,7 @@ helpers do
       if html =~ /該当する路線はありません。/
         halt 404, '404 Not Found'
       end
-      
+
       if html =~ /([0-9]{2}:[0-9]{2})現在/
         time = $1
       else
