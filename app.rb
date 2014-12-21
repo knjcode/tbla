@@ -4,6 +4,10 @@ require 'sinatra/cross_origin'
 require 'sinatra/json'
 require 'open-uri'
 
+configure :production do
+  require 'newrelic_rpm'
+end
+
 # バス停IDハッシュテーブル
 stations = {
   "大宮駅西口(おおみやえきにしぐち)"=>"12001",

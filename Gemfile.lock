@@ -3,6 +3,7 @@ GEM
   specs:
     backports (3.6.0)
     multi_json (1.10.1)
+    newrelic_rpm (3.9.8.273)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -26,6 +27,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  newrelic_rpm
   sinatra
   sinatra-contrib
   sinatra-cross_origin
